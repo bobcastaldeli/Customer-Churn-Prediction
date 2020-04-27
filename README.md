@@ -10,15 +10,15 @@ Por meio de uma análise neste dataset é possível analisar o padrão de compor
 
   **Python 3.8**
   
-    **Numpy
-      Pandas
-      Matplotlib
-      Seaborn
-      pingouin
-      graphviz
-      shap
-      imblearn
-      sklearn
-      lightgbm
-      skopt
-      yellowbrick**
+  **Numpy
+    Pandas
+    Matplotlib
+    Seaborn
+    pingouin
+    graphviz
+    shap
+    imblearn
+    sklearn
+    lightgbm
+    skopt
+    yellowbrick**
