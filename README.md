@@ -23,5 +23,5 @@ Para este projeto foram utilizados os seguintes pacotes:
 	* Scikit-Learn;
 	* LightGBM;
 	* IMBLearn;
-	* Scikit-Optmize
+	* Scikit-Optmize;
 	* Shap.
