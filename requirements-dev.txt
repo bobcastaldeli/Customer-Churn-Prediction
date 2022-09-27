@@ -573,7 +573,9 @@ webencodings==0.5.1
     #   bleach
     #   tinycss2
 wheel==0.37.1
-    # via pip-tools
+    # via
+    #   -c requirements.txt
+    #   pip-tools
 wrapt==1.14.1
     # via astroid
 yarl==1.8.1
