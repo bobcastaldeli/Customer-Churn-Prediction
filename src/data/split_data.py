@@ -24,14 +24,16 @@ def split_data(data_path, test_size, random_state):
         df, test_size=test_size, random_state=random_state
     )
     logger.info("Saving data...")
-    train.to_csv("data/train.csv", index=False)
-    test.to_csv("data/test.csv", index=False)
+    train.to_csv("data/raw/train.csv", index=False)
+    test.to_csv("data/raw/test.csv", index=False)
 
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", default="data/raw_data.csv")
+    parser.add_argument(
+        "--data_path", default="data/raw/telco-customer-churn.zip"
+    )
     parser.add_argument("--test_size", default=0.2)
     parser.add_argument("--random_state", default=42)
     args = parser.parse_args()
