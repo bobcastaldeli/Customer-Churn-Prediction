@@ -6,3 +6,4 @@ seaborn
 shap
 xgboost
 lightgbm
+category_encoders
