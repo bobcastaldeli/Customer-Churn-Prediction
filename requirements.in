@@ -7,3 +7,4 @@ shap
 xgboost
 lightgbm
 category_encoders
+feature-engine
