@@ -4,6 +4,7 @@ pre-commit-hooks
 isort
 pylint
 black
+nb_black
 docformatter
 pip-tools
 Sphinx

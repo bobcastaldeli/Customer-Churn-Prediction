@@ -59,7 +59,9 @@ beautifulsoup4==4.11.1
 billiard==3.6.4.0
     # via celery
 black==22.8.0
-    # via -r requirements-dev.in
+    # via
+    #   -r requirements-dev.in
+    #   nb-black
 bleach==5.0.1
     # via nbconvert
 blinker==1.5
@@ -227,6 +229,7 @@ ipykernel==6.15.3
 ipython==8.5.0
     # via
     #   ipykernel
+    #   nb-black
     #   nbqa
 ipython-genutils==0.2.0
     # via notebook
@@ -292,6 +295,8 @@ mypy-extensions==0.4.3
     # via black
 nanotime==0.5.2
     # via dvc-data
+nb-black==1.0.7
+    # via -r requirements-dev.in
 nbclient==0.6.8
     # via
     #   nbconvert
