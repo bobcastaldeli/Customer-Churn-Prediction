@@ -16,10 +16,20 @@ def build_features(train_path, test_path):
     train = pd.read_csv(train_path)
     test = pd.read_csv(test_path)
     logger.info("Building features...")
-    train = casting_numerical(train, "TotalCharges")
-    test = casting_numerical(test, "TotalCharges")
-    train = casting_categorical(train, "SeniorCitizen")
-    test = casting_categorical(test, "SeniorCitizen")
+    train, test = map(
+        lambda dataframe: casting_numerical(
+            dataframe, "TotalCharges", [train, test]
+        )
+    )
+    train, test = map(
+        lambda dataframe: casting_categorical(
+            dataframe, "SeniorCitizen", [train, test]
+        )
+    )
+    train, test = map(
+        lambda dataframe: dataframe.dropna(),
+        [train, test],
+    )
     logger.info("Saving data...")
     train.to_csv("data/processed/train.csv", index=False)
     test.to_csv("data/processed/test.csv", index=False)
