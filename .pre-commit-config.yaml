@@ -38,11 +38,6 @@ repos:
         language: python
         types: [yaml]
         stages: [commit]
-      - id: check-added-large-files
-        name: check for added large files
-        description: prevents giant files from being committed.
-        entry: check-added-large-files
-        language: python
       - id: check-ast
         name: check python ast
         description: simply checks whether the files parse as valid python.

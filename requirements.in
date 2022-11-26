@@ -3,8 +3,10 @@ pandas
 scikit-learn==1.1.3
 matplotlib
 seaborn
+plotly
 shap
 xgboost
 lightgbm
 category_encoders
 feature-engine
+optuna

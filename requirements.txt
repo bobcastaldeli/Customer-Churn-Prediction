@@ -4,10 +4,24 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
+alembic==1.8.1
+    # via optuna
+attrs==22.1.0
+    # via cmd2
+autopage==0.5.1
+    # via cliff
 category-encoders==2.5.1.post0
     # via -r requirements.in
+cliff==4.1.0
+    # via optuna
 cloudpickle==2.2.0
     # via shap
+cmaes==0.9.0
+    # via optuna
+cmd2==2.4.2
+    # via cliff
+colorlog==6.7.0
+    # via optuna
 contourpy==1.0.5
     # via matplotlib
 cycler==0.11.0
@@ -16,8 +30,16 @@ feature-engine==1.2.0
     # via -r requirements.in
 fonttools==4.37.3
     # via matplotlib
+greenlet==2.0.1
+    # via sqlalchemy
 importlib-metadata==4.12.0
-    # via numba
+    # via
+    #   alembic
+    #   cliff
+    #   numba
+    #   optuna
+importlib-resources==5.10.0
+    # via alembic
 joblib==1.2.0
     # via scikit-learn
 kiwisolver==1.4.4
@@ -26,6 +48,10 @@ lightgbm==3.3.2
     # via -r requirements.in
 llvmlite==0.39.1
     # via numba
+mako==1.2.4
+    # via alembic
+markupsafe==2.1.1
+    # via mako
 matplotlib==3.6.0
     # via
     #   -r requirements.in
@@ -36,11 +62,13 @@ numpy==1.23.3
     # via
     #   -r requirements.in
     #   category-encoders
+    #   cmaes
     #   contourpy
     #   feature-engine
     #   lightgbm
     #   matplotlib
     #   numba
+    #   optuna
     #   pandas
     #   patsy
     #   scikit-learn
@@ -49,9 +77,12 @@ numpy==1.23.3
     #   shap
     #   statsmodels
     #   xgboost
+optuna==3.0.3
+    # via -r requirements.in
 packaging==21.3
     # via
     #   matplotlib
+    #   optuna
     #   shap
     #   statsmodels
 pandas==1.5.0
@@ -66,18 +97,30 @@ patsy==0.5.3
     # via
     #   category-encoders
     #   statsmodels
+pbr==5.11.0
+    # via stevedore
 pillow==9.2.0
     # via matplotlib
+plotly==5.11.0
+    # via -r requirements.in
+prettytable==3.5.0
+    # via cliff
 pyparsing==3.0.9
     # via
     #   matplotlib
     #   packaging
+pyperclip==1.8.2
+    # via cmd2
 python-dateutil==2.8.2
     # via
     #   matplotlib
     #   pandas
 pytz==2022.2.1
     # via pandas
+pyyaml==6.0
+    # via
+    #   cliff
+    #   optuna
 scikit-learn==1.1.3
     # via
     #   -r requirements.in
@@ -85,11 +128,12 @@ scikit-learn==1.1.3
     #   feature-engine
     #   lightgbm
     #   shap
-scipy==1.9.1
+scipy==1.8.1
     # via
     #   category-encoders
     #   feature-engine
     #   lightgbm
+    #   optuna
     #   scikit-learn
     #   shap
     #   statsmodels
@@ -104,20 +148,36 @@ six==1.16.0
     #   python-dateutil
 slicer==0.0.7
     # via shap
+sqlalchemy==1.4.44
+    # via
+    #   alembic
+    #   optuna
 statsmodels==0.13.5
     # via
     #   category-encoders
     #   feature-engine
+stevedore==4.1.1
+    # via cliff
+tenacity==8.1.0
+    # via plotly
 threadpoolctl==3.1.0
     # via scikit-learn
 tqdm==4.64.1
-    # via shap
+    # via
+    #   optuna
+    #   shap
+wcwidth==0.2.5
+    # via
+    #   cmd2
+    #   prettytable
 wheel==0.37.1
     # via lightgbm
 xgboost==1.6.2
     # via -r requirements.in
 zipp==3.8.1
-    # via importlib-metadata
+    # via
+    #   importlib-metadata
+    #   importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

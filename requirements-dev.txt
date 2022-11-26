@@ -12,8 +12,14 @@ aiohttp-retry==2.8.3
     # via dvc-http
 aiosignal==1.2.0
     # via aiohttp
+aiosqlite==0.17.0
+    # via prefect
 alabaster==0.7.12
     # via sphinx
+alembic==1.8.1
+    # via
+    #   -c requirements.txt
+    #   prefect
 altair==4.2.0
     # via streamlit
 amqp==5.1.1
@@ -22,26 +28,38 @@ antlr4-python3-runtime==4.9.3
     # via
     #   hydra-core
     #   omegaconf
+anyio==3.6.2
+    # via
+    #   httpcore
+    #   prefect
+    #   starlette
 appdirs==1.4.4
     # via
     #   dvc
     #   iterative-telemetry
+apprise==1.2.0
+    # via prefect
 argon2-cffi==21.3.0
     # via notebook
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
+asgi-lifespan==2.0.0
+    # via prefect
 astroid==2.12.10
     # via pylint
 asttokens==2.0.8
     # via stack-data
 async-timeout==4.0.2
     # via aiohttp
+asyncpg==0.27.0
+    # via prefect
 asyncssh==2.12.0
     # via scmrepo
 atpublic==3.1.1
     # via flufl-lock
 attrs==22.1.0
     # via
+    #   -c requirements.txt
     #   aiohttp
     #   dvc-data
     #   jsonschema
@@ -69,12 +87,18 @@ blinker==1.5
 build==0.8.0
     # via pip-tools
 cachetools==5.2.0
-    # via streamlit
+    # via
+    #   google-auth
+    #   streamlit
 celery==5.2.7
     # via dvc-task
 certifi==2022.9.24
     # via
+    #   apprise
+    #   httpcore
+    #   httpx
     #   kaggle
+    #   kubernetes
     #   requests
 cffi==1.15.1
     # via
@@ -89,27 +113,43 @@ charset-normalizer==2.1.1
     #   requests
 click==8.1.3
     # via
+    #   apprise
     #   black
     #   celery
     #   click-didyoumean
     #   click-plugins
     #   click-repl
     #   pip-tools
+    #   prefect
     #   streamlit
+    #   typer
+    #   uvicorn
 click-didyoumean==0.3.0
     # via celery
 click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
+cloudpickle==2.2.0
+    # via
+    #   -c requirements.txt
+    #   prefect
 colorama==0.4.5
-    # via dvc
+    # via
+    #   dvc
+    #   griffe
 commonmark==0.9.1
     # via rich
 configobj==5.0.6
     # via dvc
+coolname==2.0.0
+    # via prefect
+croniter==1.3.8
+    # via prefect
 cryptography==38.0.1
-    # via asyncssh
+    # via
+    #   asyncssh
+    #   prefect
 debugpy==1.6.3
     # via ipykernel
 decorator==5.1.1
@@ -132,6 +172,8 @@ distro==1.7.0
     #   iterative-telemetry
 docformatter==1.5.0
     # via -r requirements-dev.in
+docker==6.0.1
+    # via prefect
 docutils==0.19
     # via sphinx
 dpath==2.0.6
@@ -162,6 +204,8 @@ entrypoints==0.4
     #   jupyter-client
 executing==1.1.0
     # via stack-data
+fastapi==0.87.0
+    # via prefect
 fastjsonschema==2.16.2
     # via nbformat
 filelock==3.8.0
@@ -181,6 +225,7 @@ fsspec[http]==2022.8.2
     # via
     #   dvc-http
     #   dvc-objects
+    #   prefect
     #   scmrepo
 funcy==1.17
     # via
@@ -197,26 +242,55 @@ gitpython==3.1.27
     # via
     #   scmrepo
     #   streamlit
+google-auth==2.14.1
+    # via kubernetes
 grandalf==0.6
     # via dvc
+greenlet==2.0.1
+    # via
+    #   -c requirements.txt
+    #   sqlalchemy
+griffe==0.24.1
+    # via prefect
+h11==0.14.0
+    # via
+    #   httpcore
+    #   uvicorn
+h2==4.1.0
+    # via httpx
+hpack==4.0.0
+    # via h2
+httpcore==0.16.2
+    # via httpx
+httpx[http2]==0.23.1
+    # via prefect
 hydra-core==1.2.0
     # via dvc
+hyperframe==6.0.1
+    # via h2
 identify==2.5.5
     # via pre-commit
 idna==3.4
     # via
+    #   anyio
     #   requests
+    #   rfc3986
     #   yarl
 imagesize==1.4.1
     # via sphinx
 importlib-metadata==4.12.0
     # via
     #   -c requirements.txt
+    #   alembic
+    #   markdown
     #   nbconvert
+    #   prefect
     #   sphinx
     #   streamlit
-importlib-resources==5.9.0
+importlib-resources==5.10.0
     # via
+    #   -c requirements.txt
+    #   alembic
     #   dvc
     #   hydra-core
     #   jsonschema
@@ -248,6 +322,10 @@ jinja2==3.1.2
     #   notebook
     #   pydeck
     #   sphinx
+jsonpatch==1.32
+    # via prefect
+jsonpointer==2.3
+    # via jsonpatch
 jsonschema==4.16.0
     # via
     #   altair
@@ -271,13 +349,23 @@ kombu==5.2.4
     # via
     #   celery
     #   dvc-task
+kubernetes==25.3.0
+    # via prefect
 lazy-object-proxy==1.7.1
     # via astroid
 lxml==4.9.1
     # via nbconvert
+mako==1.2.4
+    # via
+    #   -c requirements.txt
+    #   alembic
+markdown==3.4.1
+    # via apprise
 markupsafe==2.1.1
     # via
+    #   -c requirements.txt
     #   jinja2
+    #   mako
     #   nbconvert
 matplotlib-inline==0.1.6
     # via
@@ -333,16 +421,22 @@ numpy==1.23.3
     #   pyarrow
     #   pydeck
     #   streamlit
+oauthlib==3.2.2
+    # via requests-oauthlib
 omegaconf==2.2.3
     # via hydra-core
+orjson==3.8.2
+    # via prefect
 packaging==21.3
     # via
     #   -c requirements.txt
     #   build
+    #   docker
     #   dvc
     #   hydra-core
     #   ipykernel
     #   nbconvert
+    #   prefect
     #   pytest
     #   sphinx
     #   streamlit
@@ -360,7 +454,10 @@ pathspec==0.9.0
     # via
     #   black
     #   dvc
+    #   prefect
     #   scmrepo
+pendulum==2.1.2
+    # via prefect
 pep517==0.13.0
     # via build
 pexpect==4.8.0
@@ -388,6 +485,8 @@ pre-commit==2.20.0
     # via -r requirements-dev.in
 pre-commit-hooks==4.3.0
     # via -r requirements-dev.in
+prefect==2.6.9
+    # via -r requirements-dev.in
 prometheus-client==0.14.1
     # via notebook
 prompt-toolkit==3.0.31
@@ -413,10 +512,19 @@ py==1.11.0
     #   tox
 pyarrow==10.0.0
     # via streamlit
+pyasn1==0.4.8
+    # via
+    #   pyasn1-modules
+    #   rsa
+pyasn1-modules==0.2.8
+    # via google-auth
 pycparser==2.21
     # via cffi
 pydantic==1.10.2
-    # via nbmake
+    # via
+    #   fastapi
+    #   nbmake
+    #   prefect
 pydeck==0.8.0
     # via streamlit
 pydot==1.4.2
@@ -455,43 +563,70 @@ pytest==7.1.3
 python-dateutil==2.8.2
     # via
     #   -c requirements.txt
+    #   croniter
     #   jupyter-client
     #   kaggle
+    #   kubernetes
     #   pandas
+    #   pendulum
     #   streamlit
 python-dotenv==0.21.0
     # via -r requirements-dev.in
 python-slugify==6.1.2
-    # via kaggle
+    # via
+    #   kaggle
+    #   prefect
 pytz==2022.2.1
     # via
     #   -c requirements.txt
     #   babel
     #   celery
     #   pandas
+    #   prefect
 pytz-deprecation-shim==0.1.0.post0
     # via tzlocal
+pytzdata==2020.1
+    # via pendulum
 pyyaml==6.0
     # via
+    #   -c requirements.txt
+    #   apprise
+    #   kubernetes
     #   omegaconf
     #   pre-commit
+    #   prefect
 pyzmq==24.0.1
     # via
     #   ipykernel
     #   jupyter-client
     #   notebook
+readchar==4.0.3
+    # via prefect
 requests==2.28.1
     # via
+    #   apprise
+    #   docker
     #   dvc
     #   fsspec
     #   iterative-telemetry
     #   kaggle
+    #   kubernetes
+    #   requests-oauthlib
     #   sphinx
     #   streamlit
+requests-oauthlib==1.3.1
+    # via
+    #   apprise
+    #   kubernetes
+rfc3986[idna2008]==1.5.0
+    # via httpx
 rich==12.5.1
     # via
     #   dvc
+    #   prefect
     #   streamlit
+rsa==4.9
+    # via google-auth
 ruamel-yaml==0.17.21
     # via
     #   dvc
@@ -520,11 +655,19 @@ six==1.16.0
     #   click-repl
     #   configobj
     #   flatten-dict
+    #   google-auth
     #   kaggle
+    #   kubernetes
     #   python-dateutil
     #   tox
 smmap==5.0.0
     # via gitdb
+sniffio==1.3.0
+    # via
+    #   anyio
+    #   asgi-lifespan
+    #   httpcore
+    #   httpx
 snowballstemmer==2.2.0
     # via sphinx
 soupsieve==2.3.2.post1
@@ -543,10 +686,17 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
+sqlalchemy[asyncio]==1.4.44
+    # via
+    #   -c requirements.txt
+    #   alembic
+    #   prefect
 squarify==0.4.3
     # via -r requirements-dev.in
 stack-data==0.5.1
     # via ipython
+starlette==0.21.0
+    # via fastapi
 streamlit==1.14.0
     # via -r requirements-dev.in
 tabulate==0.8.10
@@ -564,6 +714,7 @@ tokenize-rt==4.2.1
 toml==0.10.2
     # via
     #   pre-commit
+    #   prefect
     #   streamlit
 tomli==2.0.1
     # via
@@ -608,16 +759,21 @@ traitlets==5.4.0
     #   nbconvert
     #   nbformat
     #   notebook
+typer==0.7.0
+    # via prefect
 typing-extensions==4.3.0
     # via
+    #   aiosqlite
     #   astroid
     #   asyncssh
     #   black
     #   dvc
     #   dvc-objects
+    #   prefect
     #   pydantic
     #   pylint
     #   rich
+    #   starlette
     #   streamlit
 tzdata==2022.6
     # via pytz-deprecation-shim
@@ -627,9 +783,13 @@ untokenize==0.1.1
     # via docformatter
 urllib3==1.26.12
     # via
+    #   docker
     #   dulwich
     #   kaggle
+    #   kubernetes
     #   requests
+uvicorn==0.20.0
+    # via prefect
 validators==0.20.0
     # via streamlit
 vine==5.0.0
@@ -646,11 +806,17 @@ voluptuous==0.13.1
 watchdog==2.1.9
     # via streamlit
 wcwidth==0.2.5
-    # via prompt-toolkit
+    # via
+    #   -c requirements.txt
+    #   prompt-toolkit
 webencodings==0.5.1
     # via
     #   bleach
     #   tinycss2
+websocket-client==1.4.2
+    # via
+    #   docker
+    #   kubernetes
 wheel==0.37.1
     # via
     #   -c requirements.txt

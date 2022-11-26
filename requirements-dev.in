@@ -17,4 +17,5 @@ tox
 notebook
 dvc
 squarify
+prefect
 streamlit
