@@ -10,3 +10,4 @@ lightgbm
 category_encoders
 feature-engine
 optuna
+yfinance
