@@ -1,0 +1,38 @@
+###
+### A complete description of a Prefect Deployment for flow 'pipeline'
+###
+name: pipeline
+description: null
+version: 6e048af1941ba937dd4d3e28146db0d1
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags:
+- dev
+parameters: {}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: pipeline
+manifest_path: null
+storage: null
+path: /home/bobcasta/projetos/Custumer-Churn-Prediction
+entrypoint: pipeline.py:pipeline
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
