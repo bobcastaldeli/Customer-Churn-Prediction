@@ -27,3 +27,13 @@ def casting_categorical(dataframe, categorical_feature):
         "object"
     )
     return dataframe
+
+
+def change_no_service_to_no(dataframe):
+    for col in dataframe.columns:
+        if dataframe[col].dtype == "object":
+            dataframe[col] = dataframe[col].replace("No phone service", "No")
+            dataframe[col] = dataframe[col].replace(
+                "No internet service", "No"
+            )
+    return dataframe

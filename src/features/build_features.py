@@ -3,7 +3,11 @@
 import logging
 import argparse
 import pandas as pd
-from src.features.casting_vars import casting_numerical, casting_categorical
+from src.features.casting_vars import (
+    casting_numerical,
+    casting_categorical,
+    change_no_service_to_no,
+)
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -28,6 +32,10 @@ def build_features(train_path, test_path):
     )
     train, test = map(
         lambda dataframe: dataframe.dropna(),
+        [train, test],
+    )
+    train, test = map(
+        lambda dataframe: change_no_service_to_no(dataframe),
         [train, test],
     )
     logger.info("Saving data...")
