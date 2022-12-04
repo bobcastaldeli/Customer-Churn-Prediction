@@ -15,13 +15,16 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
-def split_data(data_path, test_size, random_state):
+def split_data(data_path, test_size, stratify, random_state):
     """Split data into train and test sets."""
     logger.info("Loading data...")
     df = pd.read_csv(data_path)
     logger.info("Splitting data...")
     train, test = train_test_split(
-        df, test_size=test_size, random_state=random_state
+        df,
+        test_size=test_size,
+        stratify=stratify,
+        random_state=random_state,
     )
     logger.info("Saving data...")
     train.to_csv("data/raw/train.csv", index=False)
@@ -29,13 +32,15 @@ def split_data(data_path, test_size, random_state):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--data_path", default="data/raw/telco-customer-churn.zip"
     )
     parser.add_argument("--test_size", default=0.2)
+    parser.add_argument("--stratify", default="Churn")
     parser.add_argument("--random_state", default=42)
     args = parser.parse_args()
 
-    split_data(args.data_path, args.test_size, args.random_state)
+    split_data(
+        args.data_path, args.test_size, args.stratify, args.random_state
+    )
