@@ -23,7 +23,7 @@ def split_data(data_path, test_size, stratify, random_state):
     train, test = train_test_split(
         df,
         test_size=test_size,
-        stratify=stratify,
+        stratify=df[stratify],
         random_state=random_state,
     )
     logger.info("Saving data...")
