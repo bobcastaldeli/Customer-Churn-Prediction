@@ -16,7 +16,14 @@ logger = logging.getLogger()
 
 
 def split_data(data_path, test_size, stratify, random_state):
-    """Split data into train and test sets."""
+    """Split data into train and test sets.
+
+    params:
+        data_path: path to the raw data
+        test_size: size of the test set
+        stratify: column to stratify the split
+        random_state: random state seed
+    """
     logger.info("Loading data...")
     df = pd.read_csv(data_path)
     logger.info("Splitting data...")

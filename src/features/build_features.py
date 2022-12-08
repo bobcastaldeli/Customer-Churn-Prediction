@@ -4,6 +4,7 @@ import logging
 import argparse
 import pandas as pd
 from src.features.casting_vars import (
+    map_target,
     casting_numerical,
     casting_categorical,
     change_no_service_to_no,
@@ -15,11 +16,20 @@ logger = logging.getLogger()
 
 
 def build_features(train_path, test_path):
-    """Build features from raw data."""
+    """Build features from raw data.
+
+    params:
+        train_path: path to the raw train data
+        test_path: path to the raw test data
+    """
     logger.info("Loading data...")
     train = pd.read_csv(train_path)
     test = pd.read_csv(test_path)
     logger.info("Building features...")
+    train, test = map(
+        lambda dataframe: map_target(dataframe, "Churn", [train, test]),
+        [train, test],
+    )
     train, test = map(
         lambda dataframe: casting_numerical(
             dataframe, "TotalCharges", [train, test]
