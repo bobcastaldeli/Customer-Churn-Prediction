@@ -1,0 +1,13 @@
+schema: '2.0'
+stages:
+  download_data:
+    cmd: python3 src/data/make_dataset.py
+    deps:
+    - path: src/data/make_dataset.py
+      md5: 226f88161e4b49e788ae391c20d9e87c
+      size: 868
+    outs:
+    - path: data/raw
+      md5: 852464e25b156611f06961a4f5826333.dir
+      size: 175758
+      nfiles: 1

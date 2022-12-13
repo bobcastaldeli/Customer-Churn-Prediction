@@ -1,0 +1,7 @@
+stages:
+  download_data:
+    cmd: python3 src/data/make_dataset.py
+    deps:
+    - src/data/make_dataset.py
+    outs:
+    - data/raw
