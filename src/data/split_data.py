@@ -5,8 +5,10 @@ It then loads the data, splits it into train and test sets, and saves
 the results to the data folder.
 """
 
+import os
+import sys
 import logging
-import argparse
+import yaml
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -15,7 +17,17 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
-def split_data(data_path, test_size, stratify, random_state):
+input_path, output_path = sys.argv[1], sys.argv[2]
+
+
+with open("params.yaml", "r", encoding="utf-8") as file:
+    params = yaml.load(file, Loader=yaml.SafeLoader)
+    test_size = params["split_data"]["test_size"]
+    stratify = params["split_data"]["stratify"]
+    random_state = params["split_data"]["random_state"]
+
+
+def split_data(input_path, output_path):
     """Split data into train and test sets.
 
     params:
@@ -25,29 +37,18 @@ def split_data(data_path, test_size, stratify, random_state):
         random_state: random state seed
     """
     logger.info("Loading data...")
-    df = pd.read_csv(data_path)
+    df = pd.read_csv(os.path.join(input_path, "telco-customer-churn.zip"))
     logger.info("Splitting data...")
     train, test = train_test_split(
         df,
-        test_size=test_size,
-        stratify=df[stratify],
-        random_state=random_state,
+        test_size,
+        df[stratify],
+        random_state,
     )
     logger.info("Saving data...")
-    train.to_csv("data/raw/train.csv", index=False)
-    test.to_csv("data/raw/test.csv", index=False)
+    train.to_csv(os.path.join(output_path, "train.csv"), index=False)
+    test.to_csv(os.path.join(output_path, "test.csv"), index=False)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--data_path", default="data/raw/telco-customer-churn.zip"
-    )
-    parser.add_argument("--test_size", default=0.2)
-    parser.add_argument("--stratify", default="Churn")
-    parser.add_argument("--random_state", default=42)
-    args = parser.parse_args()
-
-    split_data(
-        args.data_path, args.test_size, args.stratify, args.random_state
-    )
+    split_data(input_path, output_path)

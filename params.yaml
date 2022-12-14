@@ -1,0 +1,4 @@
+split_data:
+  test_size: 0.2
+  stratify: 'Churn'
+  random_state: 42
