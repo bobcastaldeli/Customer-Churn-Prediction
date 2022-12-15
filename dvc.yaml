@@ -1,7 +1,18 @@
 stages:
   download_data:
-    cmd: python3 src/data/make_dataset.py
+    cmd: python3 src/data/make_dataset.py --force
     deps:
     - src/data/make_dataset.py
     outs:
     - data/raw
+  split_data:
+    cmd: python3 src/data/split_data.py data/raw data/interim
+    deps:
+    - src/data/split_data.py
+    - data/raw
+    params:
+    - split_data.test_size
+    - split_data.stratify
+    - split_data.random_state
+    outs:
+    - data/interim

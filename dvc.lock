@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   download_data:
-    cmd: python3 src/data/make_dataset.py
+    cmd: python3 src/data/make_dataset.py --force
     deps:
     - path: src/data/make_dataset.py
       md5: 9d8afd2b3f416d7471b0c01af2086aea
@@ -11,3 +11,23 @@ stages:
       md5: 852464e25b156611f06961a4f5826333.dir
       size: 175758
       nfiles: 1
+  split_data:
+    cmd: python3 src/data/split_data.py data/raw data/interim
+    deps:
+    - path: data/raw
+      md5: 852464e25b156611f06961a4f5826333.dir
+      size: 175758
+      nfiles: 1
+    - path: src/data/split_data.py
+      md5: 9757eaa5ff3925dbcf460e123100bd65
+      size: 1904
+    params:
+      params.yaml:
+        split_data.random_state: 42
+        split_data.stratify: Churn
+        split_data.test_size: 0.2
+    outs:
+    - path: data/interim
+      md5: e2f0c9184f8e78520b039b4ecb4de80b.dir
+      size: 971501
+      nfiles: 2
