@@ -22,10 +22,12 @@ if len(sys.argv) != 3 and len(sys.argv) != 5:
     sys.stderr.write("\tpython split_data.py data-dir-path ouput-dir-path\n")
     sys.exit(1)
 
+
 input_path, output_path = sys.argv[1], sys.argv[2]
 input_path = os.path.join(input_path, "telco-customer-churn.zip")
 train_output_path = os.path.join(output_path, "train.csv")
 test_output_path = os.path.join(output_path, "test.csv")
+
 
 with open("params.yaml", "r", encoding="utf-8") as file:
     params = yaml.load(file, Loader=yaml.SafeLoader)
@@ -38,10 +40,9 @@ def split_data(input_path, train_path, test_path):
     """Split data into train and test sets.
 
     params:
-        data_path: path to the raw data
-        test_size: size of the test set
-        stratify: column to stratify the split
-        random_state: random state seed
+        input_path: path to the raw data
+        train_path: path to the train data
+        test_path: path to the test data
     """
     logger.info("Loading data...")
     df = pd.read_csv(input_path)
