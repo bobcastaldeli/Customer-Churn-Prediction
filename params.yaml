@@ -4,5 +4,5 @@ split_data:
   random_state: 42
 build_features:
   target: 'Churn'
-  num_feature: 'TotalCharges'
   cat_feature: 'SeniorCitizen'
+  num_feature: 'TotalCharges'

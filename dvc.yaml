@@ -16,3 +16,14 @@ stages:
     - split_data.random_state
     outs:
     - data/interim
+  build_features:
+    cmd: python3 src/features/build_features.py data/interim data/processed
+    deps:
+    - src/features/build_features.py
+    - data/interim
+    params:
+    - build_features.target
+    - build_features.cat_feature
+    - build_features.num_feature
+    outs:
+    - data/processed

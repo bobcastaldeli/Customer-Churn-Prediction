@@ -19,8 +19,8 @@ stages:
       size: 175758
       nfiles: 1
     - path: src/data/split_data.py
-      md5: 9757eaa5ff3925dbcf460e123100bd65
-      size: 1904
+      md5: 7b4a41361863841178c96f6984b8c333
+      size: 1889
     params:
       params.yaml:
         split_data.random_state: 42
@@ -30,4 +30,24 @@ stages:
     - path: data/interim
       md5: e2f0c9184f8e78520b039b4ecb4de80b.dir
       size: 971501
+      nfiles: 2
+  build_features:
+    cmd: python3 src/features/build_features.py data/interim data/processed
+    deps:
+    - path: data/interim
+      md5: e2f0c9184f8e78520b039b4ecb4de80b.dir
+      size: 971501
+      nfiles: 2
+    - path: src/features/build_features.py
+      md5: 103106c97af2828c7fd1c705f0a179c2
+      size: 2803
+    params:
+      params.yaml:
+        build_features.cat_feature: SeniorCitizen
+        build_features.num_feature: TotalCharges
+        build_features.target: Churn
+    outs:
+    - path: data/processed
+      md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
+      size: 796963
       nfiles: 2
