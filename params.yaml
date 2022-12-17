@@ -6,3 +6,5 @@ build_features:
   target: 'Churn'
   cat_feature: 'SeniorCitizen'
   num_feature: 'TotalCharges'
+train_model:
+  target: 'Churn'

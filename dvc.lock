@@ -39,8 +39,8 @@ stages:
       size: 971501
       nfiles: 2
     - path: src/features/build_features.py
-      md5: 103106c97af2828c7fd1c705f0a179c2
-      size: 2803
+      md5: ad70f25a94cb2bd719ac1d188176e25d
+      size: 2785
     params:
       params.yaml:
         build_features.cat_feature: SeniorCitizen
@@ -51,3 +51,20 @@ stages:
       md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
       size: 796963
       nfiles: 2
+  train_model:
+    cmd: python3 src/models/train_model.py data/processed model.pkl
+    deps:
+    - path: data/processed
+      md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
+      size: 796963
+      nfiles: 2
+    - path: src/models/train_model.py
+      md5: fced9790fffcf009b25fa8beb225ebab
+      size: 3988
+    params:
+      params.yaml:
+        train_model.target: Churn
+    outs:
+    - path: model.pkl
+      md5: 0b0cd09274f05bbfba1d73894a32c5df
+      size: 2639818

@@ -1,9 +1,11 @@
 """This script is used to train the model."""
 
-
+import os
+import sys
 import logging
-import argparse
 import pickle
+import yaml
+import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import ColumnTransformer, make_column_selector
@@ -19,6 +21,24 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
+if len(sys.argv) != 3 and len(sys.argv) != 5:
+    sys.stderr.write("Arguments error. Usage:\n")
+    sys.stderr.write(
+        "\tpython train_model.py input-data-path ouput-model-path\n"
+    )
+    sys.exit(1)
+
+
+input_path, output_path = sys.argv[1], sys.argv[2]
+train_input_path = os.path.join(input_path, "train.csv")
+# model_output_path = os.path.join(output_path, "model.pkl")
+
+
+with open("params.yaml", "r", encoding="utf-8") as file:
+    params = yaml.load(file, Loader=yaml.SafeLoader)
+    target = params["train_model"]["target"]
+
+
 def train_model(train_path, model_path):
     """Train the model.
 
@@ -28,8 +48,8 @@ def train_model(train_path, model_path):
     """
     logger.info("Loading data...")
     train = pd.read_csv(train_path)
-    X_train = train.drop("Churn", axis=1)
-    y_train = train["Churn"]
+    X_train = train.drop(target, axis=1)
+    y_train = train[target]
     logger.info("Training model...")
     pipeline = pipeline = Pipeline(
         [
@@ -94,14 +114,10 @@ def train_model(train_path, model_path):
 
     pipeline.fit(X_train, y_train)
     logger.info("Saving model...")
-    with open(model_path, "wb") as f:
-        pickle.dump(pipeline, f)
+    # os.makedirs(sys.argv[2], exist_ok=True)
+    with open(model_path, "wb") as fd:
+        pickle.dump(pipeline, fd)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--train_path", default="data/raw/train.csv")
-    parser.add_argument("--model_path", default="models/model.pkl")
-    args = parser.parse_args()
-
-    train_model(args.train_path, args.model_path)
+    train_model(train_input_path, output_path)

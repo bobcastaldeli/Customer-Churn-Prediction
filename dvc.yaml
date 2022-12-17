@@ -27,3 +27,12 @@ stages:
     - build_features.num_feature
     outs:
     - data/processed
+  train_model:
+    cmd: python3 src/models/train_model.py data/processed model.pkl
+    deps:
+    - src/models/train_model.py
+    - data/processed
+    params:
+    - train_model.target
+    outs:
+    - model.pkl
