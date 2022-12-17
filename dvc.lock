@@ -59,8 +59,8 @@ stages:
       size: 796963
       nfiles: 2
     - path: src/models/train_model.py
-      md5: fced9790fffcf009b25fa8beb225ebab
-      size: 3988
+      md5: bc739c15842a12fde05150edda1eae1a
+      size: 3991
     params:
       params.yaml:
         train_model.target: Churn
