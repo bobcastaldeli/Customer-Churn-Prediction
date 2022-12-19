@@ -8,3 +8,5 @@ build_features:
   num_feature: 'TotalCharges'
 train_model:
   target: 'Churn'
+evaluate_model:
+  target: 'Churn'

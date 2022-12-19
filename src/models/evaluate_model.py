@@ -1,9 +1,12 @@
 """This script is used to predict the output of the model."""
 
 
+import os
+import sys
 import logging
-import argparse
 import pickle
+import yaml
+import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import ColumnTransformer, make_column_selector
@@ -17,6 +20,24 @@ from sklearn.ensemble import GradientBoostingClassifier
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
+
+
+if len(sys.argv) != 3 and len(sys.argv) != 5:
+    sys.stderr.write("Arguments error. Usage:\n")
+    sys.stderr.write(
+        "\tpython predict_model.py input-data-path ouput-model-path\n"
+    )
+    sys.exit(1)
+
+
+input_path, output_path = sys.argv[1], sys.argv[2]
+train_input_path = os.path.join(input_path, "train.csv")
+# model_output_path = os.path.join(output_path, "model.pkl")
+
+
+with open("params.yaml", "r", encoding="utf-8") as file:
+    params = yaml.load(file, Loader=yaml.SafeLoader)
+    target = params["evaluate_model"]["target"]
 
 
 def predict_model(test_path, model_path, output_path):
