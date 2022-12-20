@@ -28,14 +28,14 @@ stages:
     outs:
     - data/processed
   train_model:
-    cmd: python3 src/models/train_model.py data/processed model.pkl
+    cmd: python3 src/models/train_model.py data/processed models
     deps:
     - src/models/train_model.py
     - data/processed
     params:
     - train_model.target
     outs:
-    - model.pkl
+    - models
   evaluate_model:
     cmd: python3 src/models/evaluate_model.py model.pkl data/processed reports
     deps:

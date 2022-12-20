@@ -30,6 +30,7 @@ if len(sys.argv) != 3 and len(sys.argv) != 5:
 
 input_path, output_path = sys.argv[1], sys.argv[2]
 train_input_path = os.path.join(input_path, "train.csv")
+model_output_path = os.path.join(output_path, "model.pkl")
 # model_output_path = os.path.join(output_path, "model.pkl")
 
 
@@ -113,10 +114,10 @@ def train_model(train_path, model_path):
 
     pipeline.fit(X_train, y_train)
     logger.info("Saving model...")
-    # os.makedirs(sys.argv[2], exist_ok=True)
+    os.makedirs(sys.argv[2], exist_ok=True)
     with open(model_path, "wb") as fd:
         pickle.dump(pipeline, fd)
 
 
 if __name__ == "__main__":
-    train_model(train_input_path, output_path)
+    train_model(train_input_path, model_output_path)

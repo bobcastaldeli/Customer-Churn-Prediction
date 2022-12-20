@@ -52,19 +52,20 @@ stages:
       size: 796963
       nfiles: 2
   train_model:
-    cmd: python3 src/models/train_model.py data/processed model.pkl
+    cmd: python3 src/models/train_model.py data/processed models
     deps:
     - path: data/processed
       md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
       size: 796963
       nfiles: 2
     - path: src/models/train_model.py
-      md5: da5b46d5207df29c5620ab2531da7734
-      size: 3914
+      md5: 66ac904cbb784471fab7c32987b26535
+      size: 3977
     params:
       params.yaml:
         train_model.target: Churn
     outs:
-    - path: model.pkl
-      md5: 0b0cd09274f05bbfba1d73894a32c5df
+    - path: models
+      md5: 3d5e990377f57077c95471628eef86b8.dir
       size: 2639818
+      nfiles: 1
