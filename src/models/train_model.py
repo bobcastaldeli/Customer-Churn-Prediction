@@ -13,7 +13,6 @@ from feature_engine.selection import DropFeatures
 from feature_engine.creation import CombineWithReferenceFeature
 from sklearn.impute import SimpleImputer
 from category_encoders import TargetEncoder
-from sklearn.model_selection import cross_val_score, RepeatedStratifiedKFold
 from sklearn.ensemble import GradientBoostingClassifier
 
 
