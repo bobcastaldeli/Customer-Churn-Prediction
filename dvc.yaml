@@ -37,10 +37,12 @@ stages:
     outs:
     - models
   evaluate_model:
-    cmd: python3 src/models/evaluate_model.py data/processed models
+    cmd: python3 src/models/evaluate_model.py data/processed models reports
     deps:
     - src/models/evaluate_model.py
     - data/processed
     - models
     params:
     - evaluate_model.target
+    outs:
+    - reports

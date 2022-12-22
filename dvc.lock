@@ -70,7 +70,7 @@ stages:
       size: 2639818
       nfiles: 1
   evaluate_model:
-    cmd: python3 src/models/evaluate_model.py data/processed models
+    cmd: python3 src/models/evaluate_model.py data/processed models reports
     deps:
     - path: data/processed
       md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
@@ -81,8 +81,13 @@ stages:
       size: 2639818
       nfiles: 1
     - path: src/models/evaluate_model.py
-      md5: 58f589d2708fbfce9ce4f0103bcba672
-      size: 2586
+      md5: 6c8c0a5653a7ea10c6ff783575582a61
+      size: 2123
     params:
       params.yaml:
         evaluate_model.target: Churn
+    outs:
+    - path: reports
+      md5: e83d60f6c1400fe10f451f37d7d2f5c5.dir
+      size: 5638
+      nfiles: 1
