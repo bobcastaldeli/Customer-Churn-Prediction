@@ -81,13 +81,13 @@ stages:
       size: 2639818
       nfiles: 1
     - path: src/models/evaluate_model.py
-      md5: 6c8c0a5653a7ea10c6ff783575582a61
-      size: 2123
+      md5: 79f7fc6740a9423956779e745cc349da
+      size: 2874
     params:
       params.yaml:
         evaluate_model.target: Churn
     outs:
     - path: reports
-      md5: e83d60f6c1400fe10f451f37d7d2f5c5.dir
-      size: 5638
-      nfiles: 1
+      md5: fdc0d8e9808e3b5693b9697f84df6bcc.dir
+      size: 5781
+      nfiles: 2
