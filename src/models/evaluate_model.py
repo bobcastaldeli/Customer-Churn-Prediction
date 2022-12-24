@@ -15,7 +15,6 @@ from sklearn.metrics import (
     precision_score,
     f1_score,
     roc_auc_score,
-    classification_report,
     plot_precision_recall_curve,
     plot_roc_curve,
 )
@@ -39,10 +38,7 @@ test_input_path = os.path.join(input_path, "test.csv")
 model_input_path = os.path.join(model_path, "model.pkl")
 metrics_path = os.path.join(prediction_path, "metrics.csv")
 predict_path = os.path.join(prediction_path, "predictions.csv")
-# classf_report_path = os.path.join(report_path, "classification_report.png")
-# rocauc_path = os.path.join(report_path, "roc_auc_curve.png")
-# pr_path = os.path.join(report_path, "precision_recall_curve.png")
-# model_output_path = os.path.join(output_path, "model.pkl")
+plot_path = os.path.join(prediction_path, "metrics_reports.png")
 
 
 with open("params.yaml", "r", encoding="utf-8") as file:
@@ -79,6 +75,12 @@ def predict_model(test_path, model, pred_path):
     metrics = pd.DataFrame(metrics, index=[0]).to_csv(
         metrics_path, index=False
     )
+    logger.info("Generating plots...")
+    fig, ax = plt.subplots(1, 2, figsize=(20, 5))
+    plot_roc_curve(model, X_test, y_test, ax=ax[0])
+    plot_precision_recall_curve(model, X_test, y_test, ax=ax[1])
+    for i, plot in enumerate([plot_path]):
+        fig.savefig(plot)
     logger.info("Saving output...")
     output = pd.DataFrame({"y_test": y_test, "y_pred": y_pred})
     output.to_csv(pred_path, index=False)
