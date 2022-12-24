@@ -56,6 +56,7 @@ def predict_model(test_path, model, pred_path):
     params:
         test_path: path to the test data
         model: path to the model
+        pred_path: path to the predictions output
     """
     logger.info("Loading data...")
     test = pd.read_csv(test_path)
@@ -68,22 +69,16 @@ def predict_model(test_path, model, pred_path):
     y_pred = model.predict(X_test)
     os.makedirs(sys.argv[3], exist_ok=True)
     logger.info("Computing metrics...")
-    accuracy = accuracy_score(y_test, y_pred)
-    balanced_accuracy = balanced_accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-    roc_auc = roc_auc_score(y_test, y_pred)
-    metrics = pd.DataFrame(
-        {
-            "accuracy": accuracy,
-            "balanced_accuracy": balanced_accuracy,
-            "precision": precision,
-            "f1": f1,
-            "roc_auc": roc_auc,
-        },
-        index=[0],
+    metrics = {
+        "accuracy": accuracy_score(y_test, y_pred),
+        "balanced_accuracy": balanced_accuracy_score(y_test, y_pred),
+        "precision": precision_score(y_test, y_pred),
+        "f1": f1_score(y_test, y_pred),
+        "roc_auc": roc_auc_score(y_test, y_pred),
+    }
+    metrics = pd.DataFrame(metrics, index=[0]).to_csv(
+        metrics_path, index=False
     )
-    metrics.to_csv(metrics_path, index=False)
     logger.info("Saving output...")
     output = pd.DataFrame({"y_test": y_test, "y_pred": y_pred})
     output.to_csv(pred_path, index=False)
