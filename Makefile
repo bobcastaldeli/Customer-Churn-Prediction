@@ -68,6 +68,20 @@ sync-env: pip-compile
 
 #################################################################################
 ## Custumer Churn Prediction 												  ##
+make_data:
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py
+
+split_data:
+	$(PYTHON_INTERPRETER) src/data/split_data.py data/raw data/interim
+
+build_features:
+	$(PYTHON_INTERPRETER) src/features/build_features.py data/interim data/processed
+
+train_model:
+	$(PYTHON_INTERPRETER) python3 src/models/train_model.py data/processed models
+
+evaluate_model:
+	$(PYTHON_INTERPRETER) src/models/evaluate_model.py data/processed models reports
 #################################################################################
 
 ## Delete all compiled Python files
