@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   download_data:
-    cmd: python3 src/data/make_dataset.py --force
+    cmd: make make_data
     deps:
     - path: src/data/make_dataset.py
       md5: 9d8afd2b3f416d7471b0c01af2086aea
@@ -12,7 +12,7 @@ stages:
       size: 175758
       nfiles: 1
   split_data:
-    cmd: python3 src/data/split_data.py data/raw data/interim
+    cmd: make split_data
     deps:
     - path: data/raw
       md5: 852464e25b156611f06961a4f5826333.dir
@@ -32,7 +32,7 @@ stages:
       size: 971501
       nfiles: 2
   build_features:
-    cmd: python3 src/features/build_features.py data/interim data/processed
+    cmd: make build_features
     deps:
     - path: data/interim
       md5: e2f0c9184f8e78520b039b4ecb4de80b.dir
@@ -52,7 +52,7 @@ stages:
       size: 796963
       nfiles: 2
   train_model:
-    cmd: python3 src/models/train_model.py data/processed models
+    cmd: make train_model
     deps:
     - path: data/processed
       md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
@@ -70,7 +70,7 @@ stages:
       size: 2639818
       nfiles: 1
   evaluate_model:
-    cmd: python3 src/models/evaluate_model.py data/processed models reports
+    cmd: make evaluate_model
     deps:
     - path: data/processed
       md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
@@ -81,8 +81,8 @@ stages:
       size: 2639818
       nfiles: 1
     - path: src/models/evaluate_model.py
-      md5: 9fc9b602ff0e0e69387826cc3245fc27
-      size: 2845
+      md5: 31de77edfb628622fbc31ce113c70b46
+      size: 2818
     params:
       params.yaml:
         evaluate_model.target: Churn

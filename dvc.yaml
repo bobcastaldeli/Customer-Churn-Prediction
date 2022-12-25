@@ -1,12 +1,12 @@
 stages:
   download_data:
-    cmd: python3 src/data/make_dataset.py --force
+    cmd: make make_data
     deps:
     - src/data/make_dataset.py
     outs:
     - data/raw
   split_data:
-    cmd: python3 src/data/split_data.py data/raw data/interim
+    cmd: make split_data
     deps:
     - src/data/split_data.py
     - data/raw
@@ -17,7 +17,7 @@ stages:
     outs:
     - data/interim
   build_features:
-    cmd: python3 src/features/build_features.py data/interim data/processed
+    cmd: make build_features
     deps:
     - src/features/build_features.py
     - data/interim
@@ -28,7 +28,7 @@ stages:
     outs:
     - data/processed
   train_model:
-    cmd: python3 src/models/train_model.py data/processed models
+    cmd: make train_model
     deps:
     - src/models/train_model.py
     - data/processed
@@ -37,7 +37,7 @@ stages:
     outs:
     - models
   evaluate_model:
-    cmd: python3 src/models/evaluate_model.py data/processed models reports
+    cmd: make evaluate_model
     deps:
     - src/models/evaluate_model.py
     - data/processed
