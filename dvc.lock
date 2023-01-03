@@ -4,8 +4,8 @@ stages:
     cmd: make make_data
     deps:
     - path: src/data/make_dataset.py
-      md5: 9d8afd2b3f416d7471b0c01af2086aea
-      size: 867
+      md5: e0600b3a2a08b53bc6dda20904ce9f3c
+      size: 890
     outs:
     - path: data/raw
       md5: 852464e25b156611f06961a4f5826333.dir

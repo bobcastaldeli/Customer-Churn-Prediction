@@ -32,6 +32,7 @@ def download_data():
             f"{name}",
             "--p",
             f"{output_dir}",
+            "--force",
         ],
         check=True,
     )
