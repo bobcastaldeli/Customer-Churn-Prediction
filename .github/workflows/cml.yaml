@@ -14,8 +14,8 @@ jobs:
       - name: cml
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          KAGGLE_USERNAME: "jacqmenin"
+          KAGGLE_KEY: "c27472f867bc13c6e06488b46efb8f88"
         run: |
           make requirements
           # Reproduce pipeline if any changes detected in dependencies
