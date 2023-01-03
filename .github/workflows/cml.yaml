@@ -1,5 +1,5 @@
 name: CML train & evaluate model
-on: push
+on: [push]
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -14,11 +14,10 @@ jobs:
       - name: cml
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         run: |
           make requirements
           # Reproduce pipeline if any changes detected in dependencies
           dvc repro
           echo "MODEL METRICS"
-          cat metrics.txt
