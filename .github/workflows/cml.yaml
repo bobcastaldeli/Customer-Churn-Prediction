@@ -1,0 +1,24 @@
+name: CML train & evaluate model
+on: push
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check directory
+        uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
+      - uses: iterative/setup-dvc@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: cml
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          KAGGLE_USERNAME: "jacqmenin"
+          KAGGLE_KEY: "c27472f867bc13c6e06488b46efb8f88"
+        run: |
+          make requirements
+          # Reproduce pipeline if any changes detected in dependencies
+          dvc repro
+          echo "MODEL METRICS"
+          cat metrics.txt
