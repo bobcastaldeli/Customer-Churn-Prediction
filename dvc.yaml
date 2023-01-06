@@ -41,7 +41,7 @@ stages:
     deps:
     - src/models/evaluate_model.py
     - data/processed
-    - models
+    - models/model.pkl
     params:
     - evaluate_model.target
     outs:

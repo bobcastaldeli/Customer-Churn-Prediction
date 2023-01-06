@@ -76,10 +76,9 @@ stages:
       md5: 38901cf7c07fd6f2ad4e369b83a5bcbb.dir
       size: 796963
       nfiles: 2
-    - path: models
-      md5: 3d5e990377f57077c95471628eef86b8.dir
+    - path: models/model.pkl
+      md5: 0b0cd09274f05bbfba1d73894a32c5df
       size: 2639818
-      nfiles: 1
     - path: src/models/evaluate_model.py
       md5: 31de77edfb628622fbc31ce113c70b46
       size: 2818
