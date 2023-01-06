@@ -21,3 +21,4 @@ jobs:
           # Reproduce pipeline if any changes detected in dependencies
           dvc repro
           echo "MODEL METRICS"
+          cat reports/metrics.csv
