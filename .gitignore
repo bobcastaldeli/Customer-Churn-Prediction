@@ -90,3 +90,6 @@ target/
 /models
 /model.pkl
 /reports
+
+# Models folder
+/models
