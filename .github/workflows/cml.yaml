@@ -28,8 +28,4 @@ jobs:
           dvc metrics diff >> report.md
           echo "## Plots" >> report.md
           dvc plots diff >> report.md
-          cml-send-comment report.md
-          cml-send-comment --version
-          cml-send-comment --labels "cml, dvc, github-actions" --report
-          cml-pr --labels "cml, dvc, github-actions" --report
           
