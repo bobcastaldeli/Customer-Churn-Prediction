@@ -22,6 +22,12 @@ jobs:
           dvc repro
           # Use DVC metrics diff to compare metrics to main
           git fetch --prune --unshallow
+          
           echo "## Model Metrics" > report.md
           cat reports/metrics.csv >> report.md
           dvc metrics diff >> report.md
+
+          echo "## Model Evaluation" >> report.md
+          cml-publish reports/metrics_report.png --md >> report.md
+
+          cml comments update --md report.md
