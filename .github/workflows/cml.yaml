@@ -28,6 +28,5 @@ jobs:
           dvc metrics diff >> report.md
 
           echo "## Model Evaluation" >> report.md
-          cml comment reports/metrics_report.png --md >> report.md
-
-          cml comment update --md report.md
+          cat reports/metrics_report.png >> report.md
+          cml comment create --md >> report.md
