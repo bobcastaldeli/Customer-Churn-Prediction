@@ -36,7 +36,7 @@ if len(sys.argv) != 4 and len(sys.argv) != 5:
 input_path, model_path, prediction_path = sys.argv[1], sys.argv[2], sys.argv[3]
 test_input_path = os.path.join(input_path, "test.csv")
 model_input_path = os.path.join(model_path, "model.pkl")
-metrics_path = os.path.join(prediction_path, "metrics.csv")
+metrics_path = os.path.join(prediction_path, "metrics.txt")
 predict_path = os.path.join(prediction_path, "predictions.csv")
 plot_path = os.path.join(prediction_path, "metrics_reports.png")
 
@@ -65,16 +65,17 @@ def predict_model(test_path, model, pred_path):
     y_pred = model.predict(X_test)
     os.makedirs(sys.argv[3], exist_ok=True)
     logger.info("Computing metrics...")
-    metrics = {
-        "accuracy": accuracy_score(y_test, y_pred),
-        "balanced_accuracy": balanced_accuracy_score(y_test, y_pred),
-        "precision": precision_score(y_test, y_pred),
-        "f1": f1_score(y_test, y_pred),
-        "roc_auc": roc_auc_score(y_test, y_pred),
-    }
-    metrics = pd.DataFrame(metrics, index=[0]).to_csv(
-        metrics_path, index=False
-    )
+    accuracy = accuracy_score(y_test, y_pred)
+    balanced_accuracy = balanced_accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    roc_auc = roc_auc_score(y_test, y_pred)
+    with open(metrics_path, "w") as file:
+        file.write('Accuracy score: {}\n'.format(accuracy))
+        file.write('Balanced Accuracy score: {}\n'.format(balanced_accuracy))
+        file.write('Precision score: {}\n'.format(precision))
+        file.write('F1 score: {}\n'.format(f1))
+        file.write('ROC AUC score: {}\n'.format(roc_auc))
     logger.info("Generating plots...")
     fig, ax = plt.subplots(1, 2, figsize=(20, 5))
     plot_roc_curve(model, X_test, y_test, ax=ax[0])
