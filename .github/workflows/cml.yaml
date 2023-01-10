@@ -29,4 +29,4 @@ jobs:
 
           echo "## Model Evaluation" >> report.md
           cat reports/metrics_reports.png >> report.md
-          cml comment create --md >> report.md
+          cml comment create report.md
