@@ -1,4 +1,4 @@
-# This module contains functions to build features for the model
+"""This module contains functions to build features for the model."""
 
 import numpy as np
 import pandas as pd

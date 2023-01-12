@@ -25,7 +25,9 @@ colorlog==6.7.0
 contourpy==1.0.5
     # via matplotlib
 cycler==0.11.0
-    # via matplotlib
+    # via
+    #   matplotlib
+    #   yellowbrick
 feature-engine==1.2.0
     # via -r requirements.in
 fonttools==4.37.3
@@ -56,6 +58,7 @@ matplotlib==3.6.0
     # via
     #   -r requirements.in
     #   seaborn
+    #   yellowbrick
 numba==0.56.2
     # via shap
 numpy==1.23.3
@@ -77,6 +80,7 @@ numpy==1.23.3
     #   shap
     #   statsmodels
     #   xgboost
+    #   yellowbrick
 optuna==3.0.3
     # via -r requirements.in
 packaging==21.3
@@ -128,6 +132,7 @@ scikit-learn==1.1.3
     #   feature-engine
     #   lightgbm
     #   shap
+    #   yellowbrick
 scipy==1.8.1
     # via
     #   category-encoders
@@ -138,6 +143,7 @@ scipy==1.8.1
     #   shap
     #   statsmodels
     #   xgboost
+    #   yellowbrick
 seaborn==0.12.0
     # via -r requirements.in
 shap==0.41.0
@@ -173,6 +179,8 @@ wcwidth==0.2.5
 wheel==0.37.1
     # via lightgbm
 xgboost==1.6.2
+    # via -r requirements.in
+yellowbrick==1.5
     # via -r requirements.in
 zipp==3.8.1
     # via

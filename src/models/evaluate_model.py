@@ -9,15 +9,8 @@ import yaml
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import (
-    accuracy_score,
-    balanced_accuracy_score,
-    precision_score,
-    f1_score,
-    roc_auc_score,
-    plot_precision_recall_curve,
-    plot_roc_curve,
-)
+from score_model import score_model, save_metrics
+from sklearn.metrics import plot_precision_recall_curve, plot_roc_curve
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -65,17 +58,12 @@ def predict_model(test_path, model, pred_path):
     y_pred = model.predict(X_test)
     os.makedirs(sys.argv[3], exist_ok=True)
     logger.info("Computing metrics...")
-    accuracy = accuracy_score(y_test, y_pred)
-    balanced_accuracy = balanced_accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-    roc_auc = roc_auc_score(y_test, y_pred)
-    with open(metrics_path, "w") as file:
-        file.write('Accuracy score: {}\n'.format(accuracy))
-        file.write('Balanced Accuracy score: {}\n'.format(balanced_accuracy))
-        file.write('Precision score: {}\n'.format(precision))
-        file.write('F1 score: {}\n'.format(f1))
-        file.write('ROC AUC score: {}\n'.format(roc_auc))
+    accuracy, balanced_accuracy, precision, f1, roc_auc = score_model(
+        y_test, y_pred
+    )
+    save_metrics(
+        metrics_path, accuracy, balanced_accuracy, precision, f1, roc_auc
+    )
     logger.info("Generating plots...")
     fig, ax = plt.subplots(1, 2, figsize=(20, 5))
     plot_roc_curve(model, X_test, y_test, ax=ax[0])
