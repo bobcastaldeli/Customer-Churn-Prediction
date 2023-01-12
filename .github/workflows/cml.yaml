@@ -28,5 +28,5 @@ jobs:
           dvc metrics diff >> report.md
 
           echo "## Model Evaluation" >> report.md
-          echo '![](reports/metrics_reports.png "ROC Curve")' >> report.md
+          cat reports/metrics_reports.png >> report.md
           cml comment create report.md
