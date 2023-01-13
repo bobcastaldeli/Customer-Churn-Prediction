@@ -29,4 +29,6 @@ jobs:
 
           echo "## Model Evaluation" >> report.md
           echo '![](reports/confusion_matrix.png "Confusion Matrix")' >> report.md
+          echo '![](reports/precision_recall.png "Precision Recall Curve")' >> report.md
+          echo '![](reports/roc_curve.png "ROC AUC Curve")' >> report.md
           cml comment create report.md
