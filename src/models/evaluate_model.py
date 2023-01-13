@@ -10,7 +10,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from score_model import score_model, save_metrics
-from sklearn.metrics import plot_precision_recall_curve, plot_roc_curve
+from plot_metric import (
+    plot_confusion_matrix,
+    plot_precision_recall_curve,
+    plot_roc_auc,
+)
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -31,7 +35,9 @@ test_input_path = os.path.join(input_path, "test.csv")
 model_input_path = os.path.join(model_path, "model.pkl")
 metrics_path = os.path.join(prediction_path, "metrics.txt")
 predict_path = os.path.join(prediction_path, "predictions.csv")
-plot_path = os.path.join(prediction_path, "metrics_reports.png")
+confusion_matrix_path = os.path.join(prediction_path, "confusion_matrix.png")
+precision_recall_path = os.path.join(prediction_path, "precision_recall.png")
+roc_auc_path = os.path.join(prediction_path, "roc_auc.png")
 
 
 with open("params.yaml", "r", encoding="utf-8") as file:
@@ -65,11 +71,9 @@ def predict_model(test_path, model, pred_path):
         metrics_path, accuracy, balanced_accuracy, precision, f1, roc_auc
     )
     logger.info("Generating plots...")
-    fig, ax = plt.subplots(1, 2, figsize=(20, 5))
-    plot_roc_curve(model, X_test, y_test, ax=ax[0])
-    plot_precision_recall_curve(model, X_test, y_test, ax=ax[1])
-    for i, plot in enumerate([plot_path]):
-        fig.savefig(plot)
+    plot_confusion_matrix(model, X_test, y_test, confusion_matrix_path)
+    plot_precision_recall_curve(model, X_test, y_test, precision_recall_path)
+    plot_roc_auc(model, X_test, y_test, roc_auc_path)
     logger.info("Saving output...")
     output = pd.DataFrame({"y_test": y_test, "y_pred": y_pred})
     output.to_csv(pred_path, index=False)
