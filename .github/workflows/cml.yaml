@@ -29,6 +29,6 @@ jobs:
 
           echo "## Model Evaluation" >> report.md
           cat reports/confusion_matrix.png >> report.md
-          cat preports/precision_recall.png >> report.md
+          cat reports/precision_recall.png >> report.md
           cat reports/roc_auc.png >> report.md
           cml comment create report.md
