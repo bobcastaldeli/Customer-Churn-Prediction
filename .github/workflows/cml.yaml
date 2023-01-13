@@ -28,6 +28,5 @@ jobs:
           dvc metrics diff >> report.md
 
           echo "## Model Evaluation" >> report.md
-          cat reports/confusion_matrix.png >> report.md
           echo '![](reports/confusion_matrix.png "Confusion Matrix")' >> report.md
           cml comment create report.md
