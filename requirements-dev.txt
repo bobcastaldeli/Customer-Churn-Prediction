@@ -30,6 +30,7 @@ antlr4-python3-runtime==4.9.3
     #   omegaconf
 anyio==3.6.2
     # via
+    #   -c requirements.txt
     #   httpcore
     #   prefect
     #   starlette
@@ -113,6 +114,7 @@ charset-normalizer==2.1.1
     #   requests
 click==8.1.3
     # via
+    #   -c requirements.txt
     #   apprise
     #   black
     #   celery
@@ -204,8 +206,10 @@ entrypoints==0.4
     #   jupyter-client
 executing==1.1.0
     # via stack-data
-fastapi==0.87.0
-    # via prefect
+fastapi==0.89.1
+    # via
+    #   -c requirements.txt
+    #   prefect
 fastjsonschema==2.16.2
     # via nbformat
 filelock==3.8.0
@@ -254,6 +258,7 @@ griffe==0.24.1
     # via prefect
 h11==0.14.0
     # via
+    #   -c requirements.txt
     #   httpcore
     #   uvicorn
 h2==4.1.0
@@ -272,6 +277,7 @@ identify==2.5.5
     # via pre-commit
 idna==3.4
     # via
+    #   -c requirements.txt
     #   anyio
     #   requests
     #   rfc3986
@@ -520,8 +526,9 @@ pyasn1-modules==0.2.8
     # via google-auth
 pycparser==2.21
     # via cffi
-pydantic==1.10.2
+pydantic==1.10.4
     # via
+    #   -c requirements.txt
     #   fastapi
     #   nbmake
     #   prefect
@@ -664,6 +671,7 @@ smmap==5.0.0
     # via gitdb
 sniffio==1.3.0
     # via
+    #   -c requirements.txt
     #   anyio
     #   asgi-lifespan
     #   httpcore
@@ -695,8 +703,10 @@ squarify==0.4.3
     # via -r requirements-dev.in
 stack-data==0.5.1
     # via ipython
-starlette==0.21.0
-    # via fastapi
+starlette==0.22.0
+    # via
+    #   -c requirements.txt
+    #   fastapi
 streamlit==1.14.0
     # via -r requirements-dev.in
 tabulate==0.8.10
@@ -763,6 +773,7 @@ typer==0.7.0
     # via prefect
 typing-extensions==4.4.0
     # via
+    #   -c requirements.txt
     #   aiosqlite
     #   astroid
     #   asyncssh
@@ -789,7 +800,9 @@ urllib3==1.26.13
     #   kubernetes
     #   requests
 uvicorn==0.20.0
-    # via prefect
+    # via
+    #   -c requirements.txt
+    #   prefect
 validators==0.20.0
     # via streamlit
 vine==5.0.0

@@ -11,3 +11,6 @@ category_encoders
 feature-engine
 optuna
 yellowbrick
+fastapi
+uvicorn
+pydantic

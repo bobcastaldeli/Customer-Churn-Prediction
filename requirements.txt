@@ -6,12 +6,16 @@
 #
 alembic==1.8.1
     # via optuna
+anyio==3.6.2
+    # via starlette
 attrs==22.1.0
     # via cmd2
 autopage==0.5.1
     # via cliff
 category-encoders==2.5.1.post0
     # via -r requirements.in
+click==8.1.3
+    # via uvicorn
 cliff==4.1.0
     # via optuna
 cloudpickle==2.2.0
@@ -28,12 +32,18 @@ cycler==0.11.0
     # via
     #   matplotlib
     #   yellowbrick
+fastapi==0.89.1
+    # via -r requirements.in
 feature-engine==1.2.0
     # via -r requirements.in
 fonttools==4.37.3
     # via matplotlib
 greenlet==2.0.1
     # via sqlalchemy
+h11==0.14.0
+    # via uvicorn
+idna==3.4
+    # via anyio
 importlib-metadata==4.12.0
     # via
     #   alembic
@@ -109,6 +119,10 @@ plotly==5.11.0
     # via -r requirements.in
 prettytable==3.5.0
     # via cliff
+pydantic==1.10.4
+    # via
+    #   -r requirements.in
+    #   fastapi
 pyparsing==3.0.9
     # via
     #   matplotlib
@@ -154,10 +168,14 @@ six==1.16.0
     #   python-dateutil
 slicer==0.0.7
     # via shap
+sniffio==1.3.0
+    # via anyio
 sqlalchemy==1.4.44
     # via
     #   alembic
     #   optuna
+starlette==0.22.0
+    # via fastapi
 statsmodels==0.13.5
     # via
     #   category-encoders
@@ -172,6 +190,12 @@ tqdm==4.64.1
     # via
     #   optuna
     #   shap
+typing-extensions==4.4.0
+    # via
+    #   pydantic
+    #   starlette
+uvicorn==0.20.0
+    # via -r requirements.in
 wcwidth==0.2.5
     # via
     #   cmd2
