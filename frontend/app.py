@@ -55,7 +55,6 @@ with col3:
 with col4:
     tech_support = st.radio("Do you have tech support?", ["Yes", "No"])
 
-
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -97,3 +96,34 @@ with col1:
 
 with col2:
     total_charges = st.slider("How much have you paid in total?", 0, 5000, 500)
+
+
+if st.button("Predict"):
+    data = {
+        "gender": gender,
+        "SeniorCitizen": 1 if senior_citizen == "Yes" else 0,
+        "Partner": 1 if partner == "Yes" else 0,
+        "Dependents": 1 if dependents == "Yes" else 0,
+        "tenure": tenure,
+        "PhoneService": 1 if phone_service == "Yes" else 0,
+        "MultipleLines": 1 if multiple_lines == "Yes" else 0,
+        "InternetService": internet_service,
+        "OnlineSecurity": 1 if online_security == "Yes" else 0,
+        "OnlineBackup": 1 if online_backup == "Yes" else 0,
+        "DeviceProtection": 1 if device_protection == "Yes" else 0,
+        "TechSupport": 1 if tech_support == "Yes" else 0,
+        "StreamingTV": 1 if streaming_tv == "Yes" else 0,
+        "StreamingMovies": 1 if streaming_movies == "Yes" else 0,
+        "Contract": contract,
+        "PaperlessBilling": 1 if paperless_billing == "Yes" else 0,
+        "PaymentMethod": payment_method,
+        "MonthlyCharges": monthly_charges,
+        "TotalCharges": total_charges,
+    }
+
+    response = requests.post("http://localhost:8000/predict", json=data)
+    prediction = response.json()["churn_prediction"]
+    probability = response.json()["churn_probability"]
+
+    st.write(f"Prediction: {prediction}")
+    st.write(f"Probability: {probability}")
