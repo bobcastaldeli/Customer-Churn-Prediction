@@ -18,33 +18,27 @@ def root():
 @app.post("/predict")
 def predict(data: ChurnData):
     """This endpoint takes in a ChurnData object and returns a prediction."""
-    try:
-        # Load the model
-        with open("../models/model.pkl", "rb") as f:
-            model = pickle.load(f)
+    # Load the model
+    with open("../models/model.pkl", "rb") as f:
+        model = pickle.load(f)
 
-        # transform the data into a dataframe
-        new_customer = pd.DataFrame(data.dict(), index=[0])
+    # transform the data into a dataframe
+    new_customer = pd.DataFrame(data.dict(), index=[0])
 
-        prediction = model.predict(new_customer)
-        probability = model.predict_proba(new_customer)
+    prediction = model.predict(new_customer)
+    probability = model.predict_proba(new_customer)
 
-        # Return the predictions as json
-        prediction = prediction[0].item()
-        probability = probability[0][1].item()
+    # Return the predictions as json
+    prediction = prediction[0].item()
+    probability = probability[0][1].item()
 
-        churn_customer = {
-            "customerID": data.customerID,
-            "churn_prediction": ["Churn" if prediction == 1 else "No Churn"][
-                0
-            ],
-            "churn_probability": probability,
-        }
+    churn_customer = {
+        "customerID": data.customerID,
+        "churn_prediction": prediction,
+        "churn_probability": probability,
+    }
 
-        return churn_customer
-
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+    return churn_customer
 
 
 if __name__ == "__main__":
