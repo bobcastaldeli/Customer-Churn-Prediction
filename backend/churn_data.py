@@ -7,6 +7,7 @@ class ChurnData(BaseModel):
     """This class defines the data that is expected in the request body when
     calling the /predict endpoint."""
 
+    customerID: str
     gender: str
     SeniorCitizen: int
     Partner: str

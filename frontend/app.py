@@ -121,9 +121,11 @@ if st.button("Predict"):
         "TotalCharges": total_charges,
     }
 
-    response = requests.post("http://localhost:8000/predict", json=data)
-    prediction = response.json()["churn_prediction"]
-    probability = response.json()["churn_probability"]
+    st.write(data)
 
-    st.write(f"Prediction: {prediction}")
-    st.write(f"Probability: {probability}")
+    response = requests.post("http://127.0.0.1:8000/predict", json=data)
+    # prediction = response.json()["churn_prediction"]
+    # probability = response.json()["churn_probability"]
+
+    st.write(f"Prediction: {response}")
+    # st.write(f"Probability: {probability}")

@@ -2,6 +2,7 @@
 
 import pickle
 import uvicorn
+import pandas as pd
 from fastapi import FastAPI, HTTPException
 from churn_data import ChurnData
 
@@ -19,11 +20,29 @@ def predict(data: ChurnData):
     """This endpoint takes in a ChurnData object and returns a prediction."""
     try:
         # Load the model
-        model = pickle.load(open("models/model.pkl", "rb"))
-        # Make prediction
-        prediction = model.predict(data.dict())
-        # Return prediction
-        return {"prediction": prediction[0]}
+        with open("../models/model.pkl", "rb") as f:
+            model = pickle.load(f)
+
+        # transform the data into a dataframe
+        new_customer = pd.DataFrame(data.dict(), index=[0])
+
+        prediction = model.predict(new_customer)
+        probability = model.predict_proba(new_customer)
+
+        # Return the predictions as json
+        prediction = prediction[0].item()
+        probability = probability[0][1].item()
+
+        churn_customer = {
+            "customerID": data.customerID,
+            "churn_prediction": ["Churn" if prediction == 1 else "No Churn"][
+                0
+            ],
+            "churn_probability": probability,
+        }
+
+        return churn_customer
+
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
