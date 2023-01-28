@@ -3,7 +3,7 @@
 This module contains the Streamlit app and the API call to the backend.
 """
 
-
+import random
 import requests
 import streamlit as st
 
@@ -99,33 +99,45 @@ with col2:
 
 
 if st.button("Predict"):
+    # Create a random customerID with the same length as the original data
+    # with numbers between 1000 and 9999
+    customer_id = (
+        str(random.randint(1000, 9999)) + "-" + str(random.randint(1000, 9999))
+    )
+
     data = {
+        "customerID": customer_id,
         "gender": gender,
         "SeniorCitizen": 1 if senior_citizen == "Yes" else 0,
-        "Partner": 1 if partner == "Yes" else 0,
-        "Dependents": 1 if dependents == "Yes" else 0,
-        "tenure": tenure,
-        "PhoneService": 1 if phone_service == "Yes" else 0,
-        "MultipleLines": 1 if multiple_lines == "Yes" else 0,
+        "Partner": partner,
+        "Dependents": dependents,
+        "tenure": 72,
+        "PhoneService": phone_service,
+        "MultipleLines": multiple_lines,
         "InternetService": internet_service,
-        "OnlineSecurity": 1 if online_security == "Yes" else 0,
-        "OnlineBackup": 1 if online_backup == "Yes" else 0,
-        "DeviceProtection": 1 if device_protection == "Yes" else 0,
-        "TechSupport": 1 if tech_support == "Yes" else 0,
-        "StreamingTV": 1 if streaming_tv == "Yes" else 0,
-        "StreamingMovies": 1 if streaming_movies == "Yes" else 0,
+        "OnlineSecurity": online_security,
+        "OnlineBackup": online_backup,
+        "DeviceProtection": device_protection,
+        "TechSupport": tech_support,
+        "StreamingTV": streaming_tv,
+        "StreamingMovies": streaming_movies,
         "Contract": contract,
-        "PaperlessBilling": 1 if paperless_billing == "Yes" else 0,
+        "PaperlessBilling": paperless_billing,
         "PaymentMethod": payment_method,
         "MonthlyCharges": monthly_charges,
         "TotalCharges": total_charges,
     }
 
-    st.write(data)
-
     response = requests.post("http://127.0.0.1:8000/predict", json=data)
-    # prediction = response.json()["churn_prediction"]
-    # probability = response.json()["churn_probability"]
 
-    st.write(f"Prediction: {response}")
-    # st.write(f"Probability: {probability}")
+    prediction = response.json()["churn_prediction"]
+    probability = response.json()["churn_probability"]
+
+    if prediction == 1:
+        st.write(
+            "This customer will churn. with a probability of", probability
+        )
+    else:
+        st.write(
+            "This customer will not churn. with a probability of", probability
+        )

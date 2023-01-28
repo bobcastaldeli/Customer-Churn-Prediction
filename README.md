@@ -1,57 +1,71 @@
-Custumer Churn Prediction
+# Custumer Churn Prediction
 ==============================
 
-Custumer churn prediction with survival models
+Custumer churn prediction is a problem that many companies face. The goal of this project is to predict if a customer will churn or not.
 
-Project Organization
+
+# 1. Pre-requisites
+
+**Ubuntu/Debian/Mint**
+
+The GNU/Linux Make utility is required to run the Makefile. To install it, run the following command:
+
+```bash
+sudo apt-get install build-essential
+```
+
+Also, the Python 3 interpreter is required to run the project. To install it, run the following command:
+
+```bash
+sudo apt-get install python3
+```
+
+# 2. Project Organization
 ------------
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
+    ├── LICENSE                     <- Repository license
+    ├── Makefile                    <- Makefile with commands like `make data` or `make train`
+    ├── README.md                   <- The top-level README for developers using this project.
+    ├── backend                     <- Backend folder with the API and the data expecting for the api
+    │   ├── api.py                  <- API with the endpoints to predict and train the model
+    │   └── churn_data.py           <- Data to be used by the API
+    ├── configs.ini                 <- Config file with the parameters to be used by the API
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
+    │   ├── interim                 <- Intermediate data that has been transformed.
+    │   ├── processed               <- The final, canonical data sets for modeling.
+    │   └── raw                     <- The original, immutable data dump.
+    ├── docs                        <- A default Sphinx project; see sphinx-doc.org for details
+    ├── dvc.lock                    <- DVC lock file used to record the state of the pipeline and its outputs
+    ├── dvc.yaml                    <- DVC pipeline file. Defines the machine learning pipeline and the stages
+    ├── frontend                    <- Frontend folder with the web app
+    │   └── app.py                  <- Web app with the interface to predict and train the model
+    ├── models                      <- Trained and serialized models
+    ├── notebooks                   <- Jupyter notebooks used to experiment and develop the project
+    ├── params.yaml                 <- Parameters used by the DVC pipeline
+    ├── references                  <- Data dictionaries, manuals, and all other explanatory materials.
+    ├── reports                     <- Generated analysis as HTML, PDF, LaTeX, etc.
+    ├── requirements-dev.in         <- The file where you should put the development dependencies like Black, Pytest, etc.
+    ├── requirements-dev.txt        <- ❗This file will be automatically generated by the pip-compile, DON'T EDIT IT❗
+    ├── requirements.in             <- The file where you should put the modules and scripts dependencies.
+    ├── requirements.txt            <- ❗This file will be automatically generated by the pip-compile, DON'T EDIT IT❗
+    ├── setup.py                    <- makes project pip installable (pip install -e .) so src can be imported
+    ├── src                         <- Source code for use in this project.
+    │   ├── data                    <- Scripts to download or generate data
+    │   │   ├── make_dataset.py     <- Script to download the data from the internet and save it in the raw folder
+    │   │   └── split_data.py       <- Module used to split the data into train and test in make_dataset.py
+    │   ├── features                <- Scripts to turn raw data into features for modeling
+    │   │   ├── build_features.py   <- Script to generate the features from the raw data
+    │   │   └── casting_vars.py     <- Module used to cast the variables in build_features.py
+    │   ├── models                  <- Scripts to train models and then use trained models to make
+    │   │   ├── evaluate_model.py   <- Script to evaluate the model
+    │   │   ├── plot_metric.py      <- Module used to plot the metrics in evaluate_model.py
+    │   │   ├── score_model.py      <- Module used to score the model in evaluate_model.py
+    │   │   └── train_model.py      <- Script to train the model
+    │   └── visualization           <- Scripts to create exploratory and results oriented visualizations
+    │       └── visualize.py        <- Script to create the plots
+    ├── test_environment.py         <- Script to test if the environment is correctly set up
+    └── tox.ini                     <- tox file with settings for running tox; see tox.testrun.org
 --------
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
