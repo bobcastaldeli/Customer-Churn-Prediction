@@ -4,7 +4,7 @@
 Custumer churn prediction is a problem that many companies face. The goal of this project is to predict if a customer will churn or not.
 
 
-# 1. Pre-requisites
+# 1 Pre-requisites
 
 **Ubuntu/Debian/Mint**
 
@@ -20,7 +20,37 @@ Also, the Python 3 interpreter is required to run the project. To install it, ru
 sudo apt-get install python3
 ```
 
-# 2. Project Organization
+# 1.1 Environment Setup
+
+To set up the environment, run the following command:
+
+```bash
+python3 -m venv ~/path/to/venv
+```
+
+To activate the environment, run the following command:
+
+```bash
+source ~/path/to/venv/bin/activate
+```
+
+# 1.2 Install Dependencies
+
+To install the dependencies, run the following command:
+
+```bash
+make requirements
+```
+
+# 1.3 Run the Project
+
+To run the project, run the following command:
+
+```bash
+dvc repro
+```
+
+# 2 Project Organization
 ------------
 
     ├── LICENSE                     <- Repository license
@@ -65,7 +95,25 @@ sudo apt-get install python3
     │       └── visualize.py        <- Script to create the plots
     ├── test_environment.py         <- Script to test if the environment is correctly set up
     └── tox.ini                     <- tox file with settings for running tox; see tox.testrun.org
---------
+------------
+
+# 3 Test model with the API
+
+To test the model with the API, run the following command:
+
+```bash
+cd backend
+
+uvicorn api:app --reload
+```
+
+After that you can open in another terminal the UI to test the API with the following command:
+
+```bash
+cd frontend
+
+streamlit run app.py
+```
 
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
