@@ -42,7 +42,52 @@ To install the dependencies, run the following command:
 make requirements
 ```
 
-# 1.3 Run the Project
+# 2 Configure kaggle API Credentials
+
+The Kaggle's beta API key allows you to interact with Competitions and Datasets to download data, make submissions, and more via the command line.
+
+1. Download Kaggle's beta API key
+
+    * Go to your profile, click on your picture on the top left, and next click on "Account";
+    * Scroll down and click in "Create New API Token", it will download your Kaggle's key (you can expire the token anytime clicking in "Expire API Token");
+
+2. Configure API Credentials
+
+    * Now, place this file in the location ~/.kaggle/kaggle.json (on Windows in the location C:\Users\<Windows-username>\.kaggle\kaggle.json you can check the exact location, sans drive, with echo %HOMEPATH%);
+    * You can define a shell environment variable KAGGLE_CONFIG_DIR to change this location to $KAGGLE_CONFIG_DIR/kaggle.json (on Windows it will be %KAGGLE_CONFIG_DIR%\kaggle.json)
+    * For your security, ensure that other users of your computer do not have read access to your credentials. On Unix-based systems you can do this with the following command:
+
+```bash
+chmod 600 ~/.kaggle/kaggle.json
+```
+
+You can also choose to export your Kaggle username and token to the environment:
+    
+```bash
+cd nano ~/.bashrc
+```
+
+The create the following variables:
+
+```bash
+export KAGGLE_USERNAME=yourkaggleusername
+export KAGGLE_KEY=xxxxxxxxxxxxxxxxx
+```
+
+Run the command:
+
+```bash
+source ~/.bashrc
+```
+
+check if the variables are set:
+
+```bash
+echo $KAGGLE_USERNAME
+echo $KAGGLE_KEY
+```
+
+# 3 Run the Project
 
 To run the project, run the following command:
 
@@ -50,7 +95,7 @@ To run the project, run the following command:
 dvc repro
 ```
 
-# 2 Project Organization
+# 4 Project Organization
 ------------
 
     ├── LICENSE                     <- Repository license
@@ -97,7 +142,7 @@ dvc repro
     └── tox.ini                     <- tox file with settings for running tox; see tox.testrun.org
 ------------
 
-# 3 Test model with the API
+# 5 Test model with the API
 
 To test the model with the API, run the following command:
 
