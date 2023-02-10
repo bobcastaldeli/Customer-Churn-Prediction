@@ -160,5 +160,12 @@ cd frontend
 streamlit run app.py
 ```
 
+# TODO
+
+- [ ] Add more features
+- [ ] Select the best features
+- [ ] Test stacked models
+- [ ] Add tests
+- [ ] Add model monitoring
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
