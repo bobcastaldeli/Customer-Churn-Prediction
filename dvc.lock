@@ -80,8 +80,8 @@ stages:
       md5: 0b0cd09274f05bbfba1d73894a32c5df
       size: 2639818
     - path: src/models/evaluate_model.py
-      md5: 7649f9cf8d163604725db593f11eae8c
-      size: 2703
+      md5: ea56a441358f5a6f245570962c5c0ff1
+      size: 2720
     params:
       params.yaml:
         evaluate_model.target: Churn
